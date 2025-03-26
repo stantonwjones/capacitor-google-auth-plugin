@@ -1,0 +1,31 @@
+{
+  "api": {
+    "name": "CapacitorGoogleAuthPlugin",
+    "slug": "capacitorgoogleauthplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "authorize",
+        "signature": "(options: { scopes: [string]; clientId: string; }) => Promise<{ accessToken: string; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ scopes: [string]; clientId: string; }"
+          }
+        ],
+        "returns": "Promise<{ accessToken: string; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "authorize"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [],
+  "enums": [],
+  "typeAliases": [],
+  "pluginConfigs": []
+}
