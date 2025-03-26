@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "latest",
+    "@types/node": "^22.13.13",
     "vite": "^5.4.2"
   },
   "author": "",
