@@ -3,7 +3,8 @@ export interface CapacitorGoogleAuthPlugin {
         scopes: [string];
         clientId: string;
     }): Promise<{
-        accessToken: string;
+        accessToken?: string;
+        idToken?: string;
     }>;
 }
 export interface User {

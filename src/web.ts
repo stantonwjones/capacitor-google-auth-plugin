@@ -19,17 +19,17 @@ export class CapacitorGoogleAuthWeb extends WebPlugin implements CapacitorGoogle
     this.loadScript();
   }
 
-  async authorize(options: { scopes: [string], clientId: string }): Promise<{ accessToken: string }> {
+  async authorize(options: { scopes: [string], clientId: string }): Promise<{ accessToken?: string, idToken?: string }> {
     await this.googleApiLoaded;
 
-    return new Promise<{accessToken: string}>(async (resolve, reject) => {
+    return new Promise<{idToken: string}>(async (resolve, reject) => {
       try {
 
         google.accounts.id.initialize({
            client_id: options.clientId, // Replace with your actual client ID
            callback: (googleUser) => {
             console.log(googleUser);
-            resolve({accessToken: googleUser.credential});
+            resolve({idToken: googleUser.credential});
            }, // Function to handle the sign-in response
         });
         google.accounts.id.prompt();

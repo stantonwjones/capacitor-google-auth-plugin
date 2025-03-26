@@ -1,5 +1,5 @@
 export interface CapacitorGoogleAuthPlugin {
-  authorize(options: { scopes: [string], clientId: string }): Promise<{ accessToken: string }>;
+  authorize(options: { scopes: [string], clientId: string }): Promise<{ accessToken?: string, idToken?: string }>;
 }
 
 export interface User {

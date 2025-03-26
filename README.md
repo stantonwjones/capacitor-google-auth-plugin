@@ -23,14 +23,14 @@ npx cap sync
 ### authorize(...)
 
 ```typescript
-authorize(options: { scopes: [string]; clientId: string; }) => Promise<{ accessToken: string; }>
+authorize(options: { scopes: [string]; clientId: string; }) => Promise<{ accessToken?: string; idToken?: string; }>
 ```
 
 | Param         | Type                                                 |
 | ------------- | ---------------------------------------------------- |
 | **`options`** | <code>{ scopes: [string]; clientId: string; }</code> |
 
-**Returns:** <code>Promise&lt;{ accessToken: string; }&gt;</code>
+**Returns:** <code>Promise&lt;{ accessToken?: string; idToken?: string; }&gt;</code>
 
 --------------------
 

@@ -9,7 +9,8 @@ export declare class CapacitorGoogleAuthWeb extends WebPlugin implements Capacit
         scopes: [string];
         clientId: string;
     }): Promise<{
-        accessToken: string;
+        accessToken?: string;
+        idToken?: string;
     }>;
     private getUserFrom;
     private loadScript;

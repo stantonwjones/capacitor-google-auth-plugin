@@ -7,7 +7,7 @@
     "methods": [
       {
         "name": "authorize",
-        "signature": "(options: { scopes: [string]; clientId: string; }) => Promise<{ accessToken: string; }>",
+        "signature": "(options: { scopes: [string]; clientId: string; }) => Promise<{ accessToken?: string; idToken?: string; }>",
         "parameters": [
           {
             "name": "options",
@@ -15,7 +15,7 @@
             "type": "{ scopes: [string]; clientId: string; }"
           }
         ],
-        "returns": "Promise<{ accessToken: string; }>",
+        "returns": "Promise<{ accessToken?: string; idToken?: string; }>",
         "tags": [],
         "docs": "",
         "complexTypes": [],
