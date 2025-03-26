@@ -6,9 +6,6 @@ export class CapacitorGoogleAuthWeb extends WebPlugin {
         this.googleApiFailedToLoad = () => { };
         this.googleApiLoaded = new Promise((resolve, reject) => {
             this.googleApiLoadedSuccessfully = () => {
-                // gapi.load('auth2', () => {
-                //   resolve();
-                // });
                 resolve();
             };
             this.googleApiFailedToLoad = () => reject();
@@ -18,27 +15,16 @@ export class CapacitorGoogleAuthWeb extends WebPlugin {
     }
     async authorize(options) {
         await this.googleApiLoaded;
-        // TODO: only initialize this once
-        // const clientConfig: gapi.auth2.ClientConfig = {
-        //   client_id: options.clientId,
-        //   // plugin_name: 'CodetrixStudioCapacitorGoogleAuth',
-        //   scope: options.scopes.join(' '),
-        // };
-        // gapi.auth2.init(clientConfig);
         return new Promise(async (resolve, reject) => {
             try {
-                // await gapi.auth2.getAuthInstance().signIn();
                 google.accounts.id.initialize({
                     client_id: options.clientId,
                     callback: (googleUser) => {
                         console.log(googleUser);
-                        resolve({ accessToken: "TODO" });
+                        resolve({ accessToken: googleUser.credential });
                     },
                 });
                 google.accounts.id.prompt();
-                // const googleUser = gapi.auth2.getAuthInstance().currentUser.get();
-                // const user = this.getUserFrom(googleUser);
-                // user.serverAuthCode = serverAuthCode;
             }
             catch (error) {
                 reject(error);
@@ -95,7 +81,6 @@ export class CapacitorGoogleAuthWeb extends WebPlugin {
         script.id = scriptId;
         script.onload = () => this.googleApiLoadedSuccessfully();
         script.src = 'https://accounts.google.com/gsi/client';
-        // script.src = 'https://apis.google.com/js/platform.js';
         head.appendChild(script);
     }
 }
