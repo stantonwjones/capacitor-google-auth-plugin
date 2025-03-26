@@ -30,6 +30,7 @@ export class CapacitorGoogleAuthWeb extends WebPlugin implements CapacitorGoogle
            callback: (googleUser) => {
             console.log(googleUser);
             resolve({idToken: googleUser.credential});
+            console.log({idToken: googleUser.credential});
            }, // Function to handle the sign-in response
         });
         google.accounts.id.prompt();

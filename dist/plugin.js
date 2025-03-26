@@ -28,6 +28,7 @@ var capacitorCapacitorGoogleAuth = (function (exports, core) {
                         callback: (googleUser) => {
                             console.log(googleUser);
                             resolve({ idToken: googleUser.credential });
+                            console.log({ idToken: googleUser.credential });
                         },
                     });
                     google.accounts.id.prompt();
