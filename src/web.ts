@@ -8,9 +8,6 @@ export class CapacitorGoogleAuthWeb extends WebPlugin implements CapacitorGoogle
   googleApiFailedToLoad = (): void => {};
   googleApiLoaded = new Promise<void>((resolve, reject) => {
     this.googleApiLoadedSuccessfully = () => {
-      // gapi.load('auth2', () => {
-      //   resolve();
-      // });
       resolve();
     };
     this.googleApiFailedToLoad = () => reject();
@@ -24,31 +21,18 @@ export class CapacitorGoogleAuthWeb extends WebPlugin implements CapacitorGoogle
 
   async authorize(options: { scopes: [string], clientId: string }): Promise<{ accessToken: string }> {
     await this.googleApiLoaded;
-    // TODO: only initialize this once
-    // const clientConfig: gapi.auth2.ClientConfig = {
-    //   client_id: options.clientId,
-    //   // plugin_name: 'CodetrixStudioCapacitorGoogleAuth',
-    //   scope: options.scopes.join(' '),
-    // };
-    // gapi.auth2.init(clientConfig);
 
     return new Promise<{accessToken: string}>(async (resolve, reject) => {
       try {
-        // await gapi.auth2.getAuthInstance().signIn();
 
         google.accounts.id.initialize({
            client_id: options.clientId, // Replace with your actual client ID
            callback: (googleUser) => {
             console.log(googleUser);
-            resolve({accessToken: "TODO"});
+            resolve({accessToken: googleUser.credential});
            }, // Function to handle the sign-in response
         });
         google.accounts.id.prompt();
-
-        // const googleUser = gapi.auth2.getAuthInstance().currentUser.get();
-
-        // const user = this.getUserFrom(googleUser);
-        // user.serverAuthCode = serverAuthCode;
       } catch (error) {
         reject(error);
       }
@@ -116,7 +100,6 @@ export class CapacitorGoogleAuthWeb extends WebPlugin implements CapacitorGoogle
     script.id = scriptId;
     script.onload = () => this.googleApiLoadedSuccessfully();
     script.src = 'https://accounts.google.com/gsi/client';
-    // script.src = 'https://apis.google.com/js/platform.js';
     head.appendChild(script);
   }
 }
